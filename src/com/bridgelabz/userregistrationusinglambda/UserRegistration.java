@@ -1,8 +1,7 @@
 package com.bridgelabz.userregistrationusinglambda;
 /*
- * Problem Statement UC4 As a User need to follow pre-defined
-Mobile Format - E.g. 91 9919819801 
-- Country code follow by space and 10 digit number
+ * Problem Statement UC5 As a User need to follow pre-defined Password rules.
+Rule1 – minimum 8 Characters - NOTE – All rules must be passed
  */
 import java.util.regex.Pattern;
 
@@ -12,7 +11,6 @@ public class UserRegistration {
 	interface Validation {
 		public String validate(String regex, String userDetails);
 	}
-
 	/*
 	 * () -> {} (This is the Lambda Expression structure)
 	 */
@@ -44,6 +42,13 @@ public class UserRegistration {
 		};
 		System.out.println(isValidMobileNumber.validate("^[91]+[ ]?[6-9]{1}[0-9]{9}$", "91 9919819801"));
 	}
+	
+	public static void validpasswordRule1() {
+		Validation isValidPasswordRule1 = (pattern, password) -> {
+			return "Password is " + Pattern.compile(pattern).matcher(password).matches();
+		};
+		System.out.println(isValidPasswordRule1.validate("^[a-z]{8,}$", "jfydkebh"));
+	}
 	// main method
 	public static void main(String[] args) {
 		System.out.println("Welcome to User Registration Problem using Lambda Expression");
@@ -54,6 +59,6 @@ public class UserRegistration {
 		validLastName();
 		validEmail();
 		validMobileNumber();
+		validpasswordRule1();
 	}
-
 }
