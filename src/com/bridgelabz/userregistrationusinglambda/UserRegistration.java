@@ -1,8 +1,8 @@
 package com.bridgelabz.userregistrationusinglambda;
 /*
- * Problem Statement UC3 As a User need to enter a valid email
--E.g. abc.xyz@bl.co.in - Email has 3 mandatory parts (abc, bl & co) 
-and 2 optional (xyz & in) with precise @ and . positions
+ * Problem Statement UC4 As a User need to follow pre-defined
+Mobile Format - E.g. 91 9919819801 
+- Country code follow by space and 10 digit number
  */
 import java.util.regex.Pattern;
 
@@ -12,6 +12,7 @@ public class UserRegistration {
 	interface Validation {
 		public String validate(String regex, String userDetails);
 	}
+
 	/*
 	 * () -> {} (This is the Lambda Expression structure)
 	 */
@@ -37,6 +38,12 @@ public class UserRegistration {
 				"abc.xyz@bl.co.in"));
 	}
 
+	public static void validMobileNumber() {
+		Validation isValidMobileNumber = (pattern, mobileNumber) -> {
+			return "Mobile number is " + Pattern.compile(pattern).matcher(mobileNumber).matches();
+		};
+		System.out.println(isValidMobileNumber.validate("^[91]+[ ]?[6-9]{1}[0-9]{9}$", "91 9919819801"));
+	}
 	// main method
 	public static void main(String[] args) {
 		System.out.println("Welcome to User Registration Problem using Lambda Expression");
@@ -46,6 +53,7 @@ public class UserRegistration {
 		validFirstName();
 		validLastName();
 		validEmail();
+		validMobileNumber();
 	}
 
 }
