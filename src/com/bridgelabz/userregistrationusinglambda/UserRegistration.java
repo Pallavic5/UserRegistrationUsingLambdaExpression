@@ -1,8 +1,8 @@
 package com.bridgelabz.userregistrationusinglambda;
 /*
- * Problem Statement UC2 As a User need to enter a valid Last Name
-- First name starts with Cap and has
-minimum 3 characters
+ * Problem Statement UC3 As a User need to enter a valid email
+-E.g. abc.xyz@bl.co.in - Email has 3 mandatory parts (abc, bl & co) 
+and 2 optional (xyz & in) with precise @ and . positions
  */
 import java.util.regex.Pattern;
 
@@ -28,7 +28,16 @@ public class UserRegistration {
 		};
 		System.out.println(isValidLastName.validate("^[A-Z]{1}[a-z]{2,}$", "Chedge"));
 	}
-			//main method
+
+	public static void validEmail() {
+		Validation isValidEmail = (pattern, email) -> {
+			return "Email is " + Pattern.compile(pattern).matcher(email).matches();
+		};
+		System.out.println(isValidEmail.validate("^[a-z]+[+-_.]*[a-z]*[@][a-z]+[.][a-z]{2,4}[.]*([a-z]{2})*$",
+				"abc.xyz@bl.co.in"));
+	}
+
+	// main method
 	public static void main(String[] args) {
 		System.out.println("Welcome to User Registration Problem using Lambda Expression");
 		/*
@@ -36,5 +45,7 @@ public class UserRegistration {
 		 */
 		validFirstName();
 		validLastName();
+		validEmail();
 	}
+
 }
