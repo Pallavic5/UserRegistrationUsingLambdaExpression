@@ -1,7 +1,7 @@
 package com.bridgelabz.userregistrationusinglambda;
 /*
- * Problem Statement UC6 Rule2 – Should have at least 1 Upper Case 
- * - NOTE – All rules must be passed
+ * Problem Statement UC7 Rule3 – Should have at least 1 numeric number in
+the password - NOTE – All rules must be passed
  */
 import java.util.regex.Pattern;
 
@@ -58,6 +58,12 @@ public class UserRegistration {
 		};
 		System.out.println(isValidPasswordRule2.validate("^[a-z](?=.*[A-Z]).{8,}$", "jnkjjcnclP"));
 	}
+	public static void validpasswordRule3() {
+		Validation isValidPasswordRule3 = (pattern, password) -> {
+			return "Password Third is " + Pattern.compile(pattern).matcher(password).matches();
+		};
+		System.out.println(isValidPasswordRule3.validate("^[a-z](?=.*[A-Z]+)(?=.*[0-9]+).{8,}$", "jnkjPabc9"));
+	}
 	// main method
 	public static void main(String[] args) {
 		System.out.println("Welcome to User Registration Problem using Lambda Expression");
@@ -70,5 +76,6 @@ public class UserRegistration {
 		validMobileNumber();
 		validpasswordRule1();
 		validpasswordRule2();
+		validpasswordRule3();
 	}
 }
