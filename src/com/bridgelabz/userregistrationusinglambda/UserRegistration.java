@@ -1,7 +1,7 @@
 package com.bridgelabz.userregistrationusinglambda;
 /*
- * Problem Statement UC7 Rule3 – Should have at least 1 numeric number in
-the password - NOTE – All rules must be passed
+ * Problem Statement UC8 Rule4 – Has exactly 1 Special Character
+- NOTE – All rules must be passed
  */
 import java.util.regex.Pattern;
 
@@ -43,7 +43,7 @@ public class UserRegistration {
 		System.out.println(isValidMobileNumber.validate("^[91]+[ ]?[6-9]{1}[0-9]{9}$", "91 9919819801"));
 	}
 	
-	public static void validpasswordRule1() {
+	public static void validPasswordRule1() {
 		Validation isValidPasswordRule1 = (pattern, password) -> {
 			return "Password First is " + Pattern.compile(pattern).matcher(password).matches();
 		};
@@ -52,17 +52,25 @@ public class UserRegistration {
 	/*
 	 * In regex the asterisk symbol, * , denotes the number of times a character or a sequence of characters may occur.
 	 */
-	public static void validpasswordRule2() {
+	public static void validPasswordRule2() {
 		Validation isValidPasswordRule2 = (pattern, password) -> {
 			return "Password Second is " + Pattern.compile(pattern).matcher(password).matches();
 		};
 		System.out.println(isValidPasswordRule2.validate("^[a-z](?=.*[A-Z]).{8,}$", "jnkjjcnclP"));
 	}
-	public static void validpasswordRule3() {
+	
+	public static void validPasswordRule3() {
 		Validation isValidPasswordRule3 = (pattern, password) -> {
 			return "Password Third is " + Pattern.compile(pattern).matcher(password).matches();
 		};
 		System.out.println(isValidPasswordRule3.validate("^[a-z](?=.*[A-Z]+)(?=.*[0-9]+).{8,}$", "jnkjPabc9"));
+	}
+	
+	public static void validPasswordRule4() {
+		Validation isValidPasswordRule4 = (pattern, password) -> {
+			return "Password Fourth is " + Pattern.compile(pattern).matcher(password).matches();
+		};
+		System.out.println(isValidPasswordRule4.validate("^[0-9a-zA-Z!,@#$&*().]{8,}$", "prn@11abc"));
 	}
 	// main method
 	public static void main(String[] args) {
@@ -74,8 +82,9 @@ public class UserRegistration {
 		validLastName();
 		validEmail();
 		validMobileNumber();
-		validpasswordRule1();
-		validpasswordRule2();
-		validpasswordRule3();
+		validPasswordRule1();
+		validPasswordRule2();
+		validPasswordRule3();
+		validPasswordRule4();
 	}
 }
