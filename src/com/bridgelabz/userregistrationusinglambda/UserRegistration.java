@@ -1,12 +1,12 @@
 package com.bridgelabz.userregistrationusinglambda;
 /*
- * Problem Statement UC5 As a User need to follow pre-defined Password rules.
-Rule1 – minimum 8 Characters - NOTE – All rules must be passed
+ * Problem Statement UC6 Rule2 – Should have at least 1 Upper Case 
+ * - NOTE – All rules must be passed
  */
 import java.util.regex.Pattern;
 
 public class UserRegistration {
-
+	
 	@FunctionalInterface
 	interface Validation {
 		public String validate(String regex, String userDetails);
@@ -45,9 +45,18 @@ public class UserRegistration {
 	
 	public static void validpasswordRule1() {
 		Validation isValidPasswordRule1 = (pattern, password) -> {
-			return "Password is " + Pattern.compile(pattern).matcher(password).matches();
+			return "Password First is " + Pattern.compile(pattern).matcher(password).matches();
 		};
 		System.out.println(isValidPasswordRule1.validate("^[a-z]{8,}$", "jfydkebh"));
+	}
+	/*
+	 * In regex the asterisk symbol, * , denotes the number of times a character or a sequence of characters may occur.
+	 */
+	public static void validpasswordRule2() {
+		Validation isValidPasswordRule2 = (pattern, password) -> {
+			return "Password Second is " + Pattern.compile(pattern).matcher(password).matches();
+		};
+		System.out.println(isValidPasswordRule2.validate("^[a-z](?=.*[A-Z]).{8,}$", "jnkjjcnclP"));
 	}
 	// main method
 	public static void main(String[] args) {
@@ -60,5 +69,6 @@ public class UserRegistration {
 		validEmail();
 		validMobileNumber();
 		validpasswordRule1();
+		validpasswordRule2();
 	}
 }
